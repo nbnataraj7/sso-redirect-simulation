@@ -7,7 +7,8 @@
     <title>Document</title>
     <style>
         #auth,
-        #redirect {
+        #redirect,
+        #errorclient {
             display: none;
         }
     </style>
@@ -17,12 +18,23 @@
     <br />
     <h1 id="auth">Authenticating...</h1>
     <h1 id="redirect">Authentication successfull, redirecting to the client...</h1>
+    <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client URL...</h2>
     <br />
     <script>
         document.querySelector("#auth").style.display = "block";
         setTimeout(() => {
             document.querySelector("#auth").style.display = "none";
-            document.querySelector("#redirect").style.display = "block";
+            let redirectURL = window.location.href.split("?client=")[1];
+            if (redirectURL) {
+                document.querySelector("#redirect").style.display = "block";
+                setTimeout(() => {
+                    window.location = redirectURL;
+                }, 1000);
+            }
+            else {
+                document.querySelector("#errorclient").style.display = "block";
+            }
+
         }, 3000)
     </script>
 </body>
