@@ -17,18 +17,34 @@
 <body>
     <br />
     <h1 id="auth">Authenticating...</h1>
-    <h1 id="redirect">Authentication successfull, redirecting to the client...</h1>
-    <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client URL...</h2>
+    <h1 id="redirect">Authentication successfull, sending message to the client...</h1>
+    <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client...</h2>
     <br />
     <script>
         document.querySelector("#auth").style.display = "block";
-        setTimeout(() => {
+        setTimeout(function () {
             document.querySelector("#auth").style.display = "none";
-            let redirectURL = window.location.href.split("?client=")[1];
+            var client = window.location.href.split("?client=")[1];
             if (redirectURL) {
-                document.querySelector("#redirect").style.display = "block";
-                setTimeout(() => {
-                    window.location = redirectURL;
+                setTimeout(function () {
+                    switch (client) {
+                        case "office":
+                            var message = JSON.stringify({
+                                token: "BBAFJGKAGHFNKHAUYS827497239846234jkjjhsdfhdfjhh==",
+                                success: true
+                            });
+                            if (Office && Office.context && Office.context.ui) {
+                                document.querySelector("#redirect").style.display = "block";
+                                Office.context.ui.messageParent(message);
+                            }
+                            else {
+                                document.querySelector("#errorclient").style.display = "block";
+                            }
+                            break;
+                        default:
+                            document.querySelector("#errorclient").style.display = "block";
+                            break;
+                    }
                 }, 1000);
             }
             else {
