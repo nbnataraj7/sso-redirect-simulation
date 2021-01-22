@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #auth,
+        #redirect {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <br />
+    <h1 id="auth">Authenticating...</h1>
+    <h1 id="redirect">Authentication successfull, redirecting to the client...</h1>
+    <br />
+    <script>
+        document.querySelector("#auth").style.display = "block";
+        setTimeout(() => {
+            document.querySelector("#auth").style.display = "none";
+            document.querySelector("#redirect").style.display = "block";
+        }, 3000)
+    </script>
+</body>
+
+</html>
