@@ -22,6 +22,9 @@
     <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client...</h2>
     <br />
     <script>
+        Office.initialize = function() {
+            console.log("Office is ready!");
+        }
         document.querySelector("#auth").style.display = "block";
         setTimeout(function () {
             document.querySelector("#auth").style.display = "none";
