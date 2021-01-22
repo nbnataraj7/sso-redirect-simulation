@@ -25,6 +25,7 @@
         setTimeout(function () {
             document.querySelector("#auth").style.display = "none";
             var client = window.location.href.split("?client=")[1];
+            client = client.split("&")[0];
             if (redirectURL) {
                 setTimeout(function () {
                     switch (client) {
