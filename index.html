@@ -22,9 +22,6 @@
     <h2 style="color: red;" id="errorclient">Authentication successfull, invalid client...</h2>
     <br />
     <script>
-        Office.initialize = function() {
-            console.log("Office is ready!");
-        }
         document.querySelector("#auth").style.display = "block";
         setTimeout(function () {
             document.querySelector("#auth").style.display = "none";
@@ -38,12 +35,14 @@
                                 token: "BBAFJGKAGHFNKHAUYS827497239846234jkjjhsdfhdfjhh==",
                                 success: true
                             });
-                            if (Office && Office.context && Office.context.ui) {
-                                document.querySelector("#redirect").style.display = "block";
-                                Office.context.ui.messageParent(message);
-                            }
-                            else {
-                                document.querySelector("#errorclient").style.display = "block";
+                            Office.initialize = function () {
+                                if (Office && Office.context && Office.context.ui) {
+                                    document.querySelector("#redirect").style.display = "block";
+                                    Office.context.ui.messageParent(message);
+                                }
+                                else {
+                                    document.querySelector("#errorclient").style.display = "block";
+                                }
                             }
                             break;
                         default:
