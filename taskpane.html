@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Example</title>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <script>
+        Office.onReady(() => {
+            Office.context.ui.displayDialogAsync('https://nbnataraj7.github.io/sso-redirect-simulation/',
+                { height: 30, width: 20 },
+                function (asyncResult) {
+                    const dialog = asyncResult.value;
+                    dialog.addEventHandler(Office.EventType.DialogMessageReceived, (arg) => {
+                        dialog.close();
+                        processMessage(arg);
+                    });
+                }
+            );
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
