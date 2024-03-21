@@ -8,6 +8,10 @@
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
     <script>
         Office.onReady(() => {
+            document.getElementById('popupbtn').addEventListener('click', openPopup);
+        });
+
+        function openPopup() {
             Office.context.ui.displayDialogAsync('https://nbnataraj7.github.io/sso-redirect-simulation/',
                 { height: 30, width: 20 },
                 function (asyncResult) {
@@ -18,12 +22,17 @@
                     });
                 }
             );
-        });
+        }
     </script>
+    <link rel="stylesheet" href="./styles.css" type="text/css" />
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="button" id="popupbtn">
+            Open popup
+        </div>
+    </div>
 </body>
 
 </html>
